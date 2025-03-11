@@ -1,6 +1,21 @@
-# DailyScrumUi
+# Daily Scrum Meeting Application
 
+## Overview
+This is a daily scrum meeting app built with Angular, Spring Boot, and MongoDB. 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+
+## Features
+- SSO Login using Microsoft Account
+- Dashboard with username and logout option
+- Side menu form to update daily status
+- Form validation for mandatory fields
+
+## Installation
+1. Clone the repository:
+   ```shell
+   git clone <repo-url>
+   cd daily-scrum-ui
+
 
 ## Development server
 
