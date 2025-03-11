@@ -38,10 +38,22 @@
       box-shadow: 0 4px 15px rgba(214, 48, 49, 0.5);
     }
 
-    /* Night (Moonlight) */
+    /* Early Night (Twilight) */
+    .twilight {
+      background: linear-gradient(to bottom, #4a6572, #232f34);
+      box-shadow: 0 4px 15px rgba(35, 47, 52, 0.5);
+    }
+
+    /* Mid Night (Moonlight) */
     .moonlight {
       background: linear-gradient(to bottom, #203a43, #0f2027);
       box-shadow: 0 4px 15px rgba(15, 32, 39, 0.5);
+    }
+
+    /* Late Night (Deep Night) */
+    .deepnight {
+      background: linear-gradient(to bottom, #0c1a21, #03080a);
+      box-shadow: 0 4px 15px rgba(3, 8, 10, 0.5);
     }
 
     .date-time {

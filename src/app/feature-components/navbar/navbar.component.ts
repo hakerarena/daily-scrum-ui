@@ -1,3 +1,4 @@
+// navbar.component.ts
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../services/sidebar.service';
 
@@ -38,8 +39,14 @@ export class NavbarComponent implements OnInit {
     } else if (totalMinutes >= 12 * 60 && totalMinutes < 18 * 60) {
       this.timeClass = 'sunset';
       this.timeIconClass = 'sun';
-    } else {
+    } else if (totalMinutes >= 18 * 60 && totalMinutes < 21 * 60) {
+      this.timeClass = 'twilight';
+      this.timeIconClass = 'moon';
+    } else if (totalMinutes >= 21 * 60 || totalMinutes < 3 * 60) {
       this.timeClass = 'moonlight';
+      this.timeIconClass = 'moon';
+    } else {
+      this.timeClass = 'deepnight';
       this.timeIconClass = 'moon';
     }
   }
@@ -51,10 +58,8 @@ export class NavbarComponent implements OnInit {
     let rotation = 0;
 
     if (totalMinutes >= 5 * 60 && totalMinutes < 18 * 60) {
-      // Sunrise to Sunset
       rotation = ((totalMinutes - 5 * 60) / (13 * 60)) * 180;
     } else {
-      // Sunset to Sunrise
       if (totalMinutes >= 18 * 60) {
         rotation = ((totalMinutes - 18 * 60) / (11 * 60)) * 180 + 180;
       } else {
