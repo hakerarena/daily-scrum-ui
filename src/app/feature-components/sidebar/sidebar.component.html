@@ -4,7 +4,12 @@
     <button class="btn-close" (click)="closeSidebar()"></button>
   </div>
 
-  <form [formGroup]="updateStatusForm" (ngSubmit)="submitStatus()">
+  <!-- ✅ Form Starts -->
+  <form
+    [formGroup]="updateStatusForm"
+    (ngSubmit)="submitStatus()"
+    class="sidebar-body"
+  >
     <!-- Yesterday -->
     <div class="form-group">
       <label
@@ -107,15 +112,17 @@
         This field is required
       </small>
     </div>
-
-    <div class="sidebar-footer">
-      <button
-        class="btn btn-success"
-        type="submit"
-        [disabled]="updateStatusForm.invalid"
-      >
-        Submit
-      </button>
-    </div>
   </form>
+
+  <!-- ✅ Fixed Footer -->
+  <div class="sidebar-footer">
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="updateStatusForm.invalid"
+      (click)="submitStatus()"
+    >
+      Submit
+    </button>
+  </div>
 </div>
