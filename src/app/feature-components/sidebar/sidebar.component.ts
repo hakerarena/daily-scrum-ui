@@ -21,21 +21,35 @@ export class SidebarComponent {
       followUps: ['', Validators.required]
     });
 
-    // Listen to service to open sidebar
+    // Listen to service to open the sidebar
     this.sidebarService.sidebarState.subscribe(isOpen => this.isOpen = isOpen);
   }
 
+  // ✅ Auto resize textarea dynamically based on input
+  autoResize(event: any) {
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
+  // ✅ Submit Form
   submitStatus() {
-    if (this.updateStatusForm.invalid) return;
+    if (this.updateStatusForm.invalid) {
+      return;
+    }
+
+    console.log('Form Data:', this.updateStatusForm.value);
     alert('Status updated successfully!');
     this.updateStatusForm.reset();
     this.closeSidebar();
   }
 
+  // ✅ Close Sidebar
   closeSidebar() {
     this.sidebarService.closeSidebar();
   }
 
+  // ✅ Get form controls
   get f() {
     return this.updateStatusForm.controls;
   }

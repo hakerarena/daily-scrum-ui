@@ -1,34 +1,51 @@
 <div class="sidebar" [class.open]="isOpen">
   <div class="sidebar-header">
     <h3>Update Status</h3>
-    <button class="btn-close" (click)="closeSidebar()">✖</button>
+    <button class="btn-close" (click)="closeSidebar()"></button>
   </div>
 
   <form [formGroup]="updateStatusForm" (ngSubmit)="submitStatus()">
+    <!-- Yesterday -->
     <div class="form-group">
       <label
         ><strong
           >What you did yesterday: <span class="text-danger">*</span></strong
         ></label
       >
-      <textarea formControlName="yesterday"></textarea>
-      <small *ngIf="f['yesterday'].touched && f['yesterday'].invalid"
-        >This field is required</small
+      <textarea
+        formControlName="yesterday"
+        (input)="autoResize($event)"
+        rows="1"
+        class="form-control"
+        placeholder="Write about yesterday's work"
+      ></textarea>
+      <small
+        *ngIf="f['yesterday'].touched && f['yesterday'].errors?.['required']"
       >
+        This field is required
+      </small>
     </div>
 
+    <!-- Today -->
     <div class="form-group">
       <label
         ><strong
           >What you will do today: <span class="text-danger">*</span></strong
         ></label
       >
-      <textarea formControlName="today"></textarea>
-      <small *ngIf="f['today'].touched && f['today'].invalid"
-        >This field is required</small
-      >
+      <textarea
+        formControlName="today"
+        (input)="autoResize($event)"
+        rows="1"
+        class="form-control"
+        placeholder="Write about today's work"
+      ></textarea>
+      <small *ngIf="f['today'].touched && f['today'].errors?.['required']">
+        This field is required
+      </small>
     </div>
 
+    <!-- On Call -->
     <div class="form-group">
       <label
         ><strong
@@ -36,24 +53,40 @@
           <span class="text-danger">*</span></strong
         ></label
       >
-      <textarea formControlName="onCall"></textarea>
-      <small *ngIf="f['onCall'].touched && f['onCall'].invalid"
-        >This field is required</small
-      >
+      <textarea
+        formControlName="onCall"
+        (input)="autoResize($event)"
+        rows="1"
+        class="form-control"
+        placeholder="Any production support?"
+      ></textarea>
+      <small *ngIf="f['onCall'].touched && f['onCall'].errors?.['required']">
+        This field is required
+      </small>
     </div>
 
+    <!-- Impediments -->
     <div class="form-group">
       <label
         ><strong
           >Any impediments: <span class="text-danger">*</span></strong
         ></label
       >
-      <textarea formControlName="impediments"></textarea>
-      <small *ngIf="f['impediments'].touched && f['impediments'].invalid"
-        >This field is required</small
+      <textarea
+        formControlName="impediments"
+        (input)="autoResize($event)"
+        rows="1"
+        class="form-control"
+        placeholder="Any blockers?"
+      ></textarea>
+      <small
+        *ngIf="f['impediments'].touched && f['impediments'].errors?.['required']"
       >
+        This field is required
+      </small>
     </div>
 
+    <!-- Follow-Ups -->
     <div class="form-group">
       <label
         ><strong
@@ -61,10 +94,18 @@
           <span class="text-danger">*</span></strong
         ></label
       >
-      <textarea formControlName="followUps"></textarea>
-      <small *ngIf="f['followUps'].touched && f['followUps'].invalid"
-        >This field is required</small
+      <textarea
+        formControlName="followUps"
+        (input)="autoResize($event)"
+        rows="1"
+        class="form-control"
+        placeholder="Any follow-ups or tasks?"
+      ></textarea>
+      <small
+        *ngIf="f['followUps'].touched && f['followUps'].errors?.['required']"
       >
+        This field is required
+      </small>
     </div>
 
     <div class="sidebar-footer">
