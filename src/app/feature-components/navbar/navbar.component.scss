@@ -11,6 +11,12 @@
     font-weight: bold;
   }
 
+  .current-datetime {
+    font-size: 14px;
+    text-align: center;
+    flex-grow: 1;
+  }
+
   .nav-btn-container {
     button {
       margin-left: 10px;

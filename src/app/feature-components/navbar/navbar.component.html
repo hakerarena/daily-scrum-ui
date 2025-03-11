@@ -1,5 +1,11 @@
 <div class="navbar">
   <span class="greeting">Hello, {{ username }}</span>
+  
+  <!-- Center Date & Time -->
+  <div class="current-datetime">
+    {{ currentDate | date:'fullDate' }} - {{ currentTime }}
+  </div>
+
   <div class="nav-btn-container">
     <button class="btn btn-success" (click)="openUpdateStatus()">
       Update Status
