@@ -19,23 +19,24 @@ export class LoginComponent {
     });
   }
 
+  // ✅ This will now allow you to use `f.email` without errors
+  get f() {
+    return this.loginForm.controls as { [key: string]: any };
+  }
+
   login() {
     if (this.loginForm.invalid) {
       return;
     }
 
     const { email, password } = this.loginForm.value;
+
     if (email === 'asdbibsadu@sm.com' && password === 'ahkdsbaskdb') {
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('email', email); // Store username for Navbar
+      localStorage.setItem('email', email);
       this.router.navigate(['/dashboard']);
     } else {
       this.loginError = 'Invalid credentials. Please try again.';
     }
-  }
-
-  // Getter for easy access to form controls
-  get f() {
-    return this.loginForm.controls;
   }
 }

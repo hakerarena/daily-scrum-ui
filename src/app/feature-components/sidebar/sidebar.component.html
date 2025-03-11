@@ -1,16 +1,107 @@
-<div class="sidebar">
+<div class="sidebar" [class.open]="isOpen">
   <div class="sidebar-header">
     <button class="btn-close" (click)="closeSidebar()">✖</button>
   </div>
 
   <h3>Update Status</h3>
-  <form>
-    <label>What did you do yesterday?</label>
-    <textarea></textarea>
+  <form [formGroup]="updateStatusForm" (ngSubmit)="submitStatus()">
+    <div class="form-group">
+      <label
+        ><strong
+          >What you did yesterday: <span class="text-danger">*</span></strong
+        ></label
+      >
+      <textarea
+        formControlName="yesterday"
+        [ngClass]="{
+          'is-invalid': f['yesterday'].touched && f['yesterday'].invalid
+        }"
+      ></textarea>
+      <small
+        *ngIf="f['yesterday'].touched && f['yesterday'].errors?.['required']"
+      >
+        This field is required
+      </small>
+    </div>
 
-    <label>What will you do today?</label>
-    <textarea></textarea>
+    <div class="form-group">
+      <label
+        ><strong
+          >What you will do today: <span class="text-danger">*</span></strong
+        ></label
+      >
+      <textarea
+        formControlName="today"
+        [ngClass]="{ 'is-invalid': f['today'].touched && f['today'].invalid }"
+      ></textarea>
+      <small *ngIf="f['today'].touched && f['today'].errors?.['required']">
+        This field is required
+      </small>
+    </div>
 
-    <button class="btn btn-success" (click)="submitForm()">Submit</button>
+    <div class="form-group">
+      <label
+        ><strong
+          >On Call/Production Support:
+          <span class="text-danger">*</span></strong
+        ></label
+      >
+      <textarea
+        formControlName="onCall"
+        [ngClass]="{ 'is-invalid': f['onCall'].touched && f['onCall'].invalid }"
+      ></textarea>
+      <small *ngIf="f['onCall'].touched && f['onCall'].errors?.['required']">
+        This field is required
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label
+        ><strong
+          >Any impediments: <span class="text-danger">*</span></strong
+        ></label
+      >
+      <textarea
+        formControlName="impediments"
+        [ngClass]="{
+          'is-invalid': f['impediments'].touched && f['impediments'].invalid
+        }"
+      ></textarea>
+      <small
+        *ngIf="f['impediments'].touched && f['impediments'].errors?.['required']"
+      >
+        This field is required
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label
+        ><strong
+          >Any other follow-ups/tasks:
+          <span class="text-danger">*</span></strong
+        ></label
+      >
+      <textarea
+        formControlName="followUps"
+        [ngClass]="{
+          'is-invalid': f['followUps'].touched && f['followUps'].invalid
+        }"
+      ></textarea>
+      <small
+        *ngIf="f['followUps'].touched && f['followUps'].errors?.['required']"
+      >
+        This field is required
+      </small>
+    </div>
+
+    <div class="sidebar-footer">
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="updateStatusForm.invalid"
+      >
+        Submit
+      </button>
+    </div>
   </form>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,22 +10,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   username: string = '';
 
-  constructor(private router: Router) {
-    this.username = localStorage.getItem('username') || 'User';
+  constructor(private sidebarService: SidebarService) {
+    this.username = localStorage.getItem('email') || 'User';
   }
 
   openUpdateStatus() {
-    const sidebar = document.querySelector('.sidebar') as HTMLElement;
-    sidebar.classList.add('open');
+    this.sidebarService.openSidebar();
   }
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
-  }
-
-  closeSidebar() {
-    const sidebar = document.querySelector('.sidebar') as HTMLElement;
-    sidebar.classList.remove('open');
+    alert('Logged out successfully!');
+    window.location.reload();
   }
 }
