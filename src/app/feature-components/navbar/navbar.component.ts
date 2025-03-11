@@ -9,13 +9,19 @@ import { SidebarService } from '../../services/sidebar.service';
 })
 export class NavbarComponent {
   username: string = '';
+  isSidebarOpen = false;
 
   constructor(private sidebarService: SidebarService) {
     this.username = localStorage.getItem('email') || 'User';
+    this.sidebarService.sidebarState.subscribe(isSidebarOpen => this.isSidebarOpen = isSidebarOpen);
   }
 
   openUpdateStatus() {
-    this.sidebarService.openSidebar();
+    this.isSidebarOpen ? this.sidebarService.closeSidebar(): this.sidebarService.openSidebar();
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
   }
 
   logout() {
