@@ -1,5 +1,19 @@
 .navbar {
+  background-color: #3f8cff;
+  color: #fff;
+  padding: 15px 20px;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+
+  .greeting {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .nav-btn-container {
+    button {
+      margin-left: 10px;
+    }
+  }
 }

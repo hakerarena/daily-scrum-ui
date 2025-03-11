@@ -21,16 +21,12 @@ export class SidebarComponent {
       followUps: ['', Validators.required]
     });
 
-    // Listen to service to open the sidebar
+    // Listen to service to open sidebar
     this.sidebarService.sidebarState.subscribe(isOpen => this.isOpen = isOpen);
   }
 
   submitStatus() {
-    if (this.updateStatusForm.invalid) {
-      return;
-    }
-
-    console.log('Form Data:', this.updateStatusForm.value);
+    if (this.updateStatusForm.invalid) return;
     alert('Status updated successfully!');
     this.updateStatusForm.reset();
     this.closeSidebar();

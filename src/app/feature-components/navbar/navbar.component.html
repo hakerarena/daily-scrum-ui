@@ -1,7 +1,9 @@
 <div class="navbar">
   <span class="greeting">Hello, {{ username }}</span>
-  <button class="btn btn-primary" (click)="openUpdateStatus()">
-    Update Status
-  </button>
-  <button class="btn btn-danger" (click)="logout()">Logout</button>
+  <div class="nav-btn-container">
+    <button class="btn btn-success" (click)="openUpdateStatus()">
+      Update Status
+    </button>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
 </div>
