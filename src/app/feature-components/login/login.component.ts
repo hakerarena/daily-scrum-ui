@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { env } from '../../../environments/environment-qa';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent {
 
     const { email, password } = this.loginForm.value;
 
-    if (email === 'asdbibsadu@sm.com' && password === 'ahkdsbaskdb') {
+    if (email === env.USERNAME && password === env.PASSWORD) {
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('email', email);
       this.router.navigate(['/dashboard']);
