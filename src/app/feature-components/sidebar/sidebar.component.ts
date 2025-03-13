@@ -26,8 +26,8 @@ export class SidebarComponent {
   }
 
   // ✅ Auto resize textarea dynamically based on input
-  autoResize(event: any) {
-    const textarea = event.target;
+  autoResize(event: Event) {
+    const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
