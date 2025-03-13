@@ -1,6 +1,10 @@
-// navbar.component.ts
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from '../../services/sidebar.service';
+import { Observable, Subscription } from 'rxjs';
+import { SidebarState } from '../../+state/sidebar/sidebar.interfaces';
+import { ScrumState } from '../../shared/interfaces';
+import { Store } from '@ngrx/store';
+import { sidebarState } from '../../+state/selector';
+import { sidebarActions } from '../../+state/sidebar/sidebar.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -10,21 +14,28 @@ import { SidebarService } from '../../services/sidebar.service';
 })
 export class NavbarComponent implements OnInit {
   username: string = '';
-  isSidebarOpen = false;
   currentDate = new Date();
   timeClass: string = 'sunrise';
   timeIconClass: string = 'sun';
+  localSidebar: SidebarState = { isOpen: false, isClosed: true };
 
-  constructor(private sidebarService: SidebarService) {
+  subscriptions: Subscription[] = [];
+  sidebarState$: Observable<SidebarState>;
+
+  constructor(private store: Store<ScrumState>) {
     this.username = localStorage.getItem('email') || 'User';
-    this.sidebarService.sidebarState.subscribe(
-      (isSidebarOpen) => (this.isSidebarOpen = isSidebarOpen)
-    );
+    this.sidebarState$ = this.store.select(sidebarState);
   }
 
   ngOnInit(): void {
     this.updateTime();
     setInterval(() => this.updateTime(), 1000);
+
+    this.subscriptions.push(
+      this.sidebarState$.subscribe((sidebarState) => {
+        this.localSidebar = sidebarState;
+      })
+    );
   }
 
   updateTime() {
@@ -69,10 +80,15 @@ export class NavbarComponent implements OnInit {
     return `rotate(${rotation}deg)`;
   }
 
-  openUpdateStatus() {
-    this.isSidebarOpen
-      ? this.sidebarService.closeSidebar()
-      : this.sidebarService.openSidebar();
+  toggleSidebar() {
+    this.store.dispatch(
+      sidebarActions.toggleSidebar({
+        sidebarState: {
+          isOpen: !this.localSidebar.isOpen,
+          isClosed: !this.localSidebar.isClosed,
+        },
+      })
+    );
   }
 
   logout() {
