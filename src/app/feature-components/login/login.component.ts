@@ -20,9 +20,9 @@ export class LoginComponent {
     });
   }
 
-  // ✅ This will now allow you to use `f.email` without errors
+  // Add this getter to your LoginComponent class
   get f() {
-    return this.loginForm.controls as { [key: string]: any };
+    return this.loginForm.controls;
   }
 
   login() {
