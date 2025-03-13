@@ -44,8 +44,11 @@ export class SidebarComponent {
     this.closeSidebar();
   }
 
-  // ✅ Close Sidebar
+  // ✅ Close Sidebar and reset form
   closeSidebar() {
+    this.updateStatusForm.reset();
+    this.updateStatusForm.markAsPristine();
+    this.updateStatusForm.markAsUntouched();
     this.sidebarService.closeSidebar();
   }
 
