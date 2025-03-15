@@ -33,7 +33,6 @@ export class LoginComponent {
 
     if (email === USERNAME && password === PASSWORD) {
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('email', email);
       this.router.navigate(['/dashboard']);
     } else {
       this.loginError = 'Invalid credentials. Please try again.';

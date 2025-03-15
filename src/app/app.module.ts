@@ -14,6 +14,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataAccessModule } from './+state/data-access.module';
 import { Store, StoreModule } from '@ngrx/store';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,11 +30,7 @@ import { Store, StoreModule } from '@ngrx/store';
     FormsModule,
     ReactiveFormsModule,
     DataAccessModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent },
-    ]),
+    AppRoutingModule,
     StoreModule.forRoot({}),
   ],
   exports: [
