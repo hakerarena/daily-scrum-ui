@@ -18,17 +18,6 @@ jobs:
         with:
           node-version: "22.14.0"
 
-      - name: Create .env file
-        run: echo "${{ secrets.ENV_FILE }}" > .env
-
-      - name: Generate environment-qa.json
-        run: |
-          echo "{" > ./src/environments/environment-qa.json
-          echo "  \"PRODUCTION\": $(grep PRODUCTION .env | cut -d '=' -f2)," >> ./src/environments/environment-qa.json
-          echo "  \"USERNAME\": \"$(grep USERNAME .env | cut -d '=' -f2)\"," >> ./src/environments/environment-qa.json
-          echo "  \"PASSWORD\": \"$(grep PASSWORD .env | cut -d '=' -f2)\"" >> ./src/environments/environment-qa.json
-          echo "}" >> ./src/environments/environment-qa.json
-
       - name: Install dependencies
         run: npm install
 

@@ -40,8 +40,7 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/material-icons/iconfont/material-icons.css"
-            ],
-            "scripts": ["src/config/load-env.js"]
+            ]
           },
           "configurations": {
             "production": {
