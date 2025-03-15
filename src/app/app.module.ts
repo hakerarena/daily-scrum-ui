@@ -6,7 +6,11 @@ import { LoginComponent } from './feature-components/login/login.component';
 import { DashboardComponent } from './feature-components/dashboard/dashboard.component';
 import { NavbarComponent } from './feature-components/navbar/navbar.component';
 import { SidebarComponent } from './feature-components/sidebar/sidebar.component';
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataAccessModule } from './+state/data-access.module';
 import { Store, StoreModule } from '@ngrx/store';
@@ -40,7 +44,7 @@ import { Store, StoreModule } from '@ngrx/store';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
