@@ -1,0 +1,1 @@
+import e from"dotenv";import{readFileSync as r,writeFileSync as t}from"fs";import{resolve as n}from"path";const s=n("./.env"),i=e.parse(r(s)),o=n("src/environments/environment-qa.json");t(o,JSON.stringify(i,null,2)),console.log("\u2705 Environment variables saved to env.json:",o);
