@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # or the branch you want to deploy from
+      - main
 
 jobs:
   build:
@@ -18,11 +18,22 @@ jobs:
         with:
           node-version: "22.14.0"
 
+      - name: Create .env file
+        run: echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: Generate environment-qa.json
+        run: |
+          echo "{" > ./src/environments/environment-qa.json
+          echo "  \"production\": $(grep PRODUCTION .env | cut -d '=' -f2)," >> ./src/environments/environment-qa.json
+          echo "  \"username\": \"$(grep USERNAME .env | cut -d '=' -f2)\"," >> ./src/environments/environment-qa.json
+          echo "  \"password\": \"$(grep PASSWORD .env | cut -d '=' -f2)\"" >> ./src/environments/environment-qa.json
+          echo "}" >> ./src/environments/environment-qa.json
+
       - name: Install dependencies
         run: npm install
 
       - name: Build the project
-        run: npm run build --prod
+        run: npm run build -- --configuration=production
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
