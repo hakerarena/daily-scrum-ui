@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:env": "node ./src/config/load-env.js",
+    "build": "npm run build:env && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
